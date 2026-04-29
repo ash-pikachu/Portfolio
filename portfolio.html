@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pranjal Singh | Portfolio</title>
+  <style>
+    :root {
+      --bg: #05060d;
+      --panel: rgba(13, 15, 29, 0.78);
+      --panel-strong: rgba(19, 22, 41, 0.94);
+      --text: #f7fbff;
+      --muted: #aab5c7;
+      --red: #ff2f5f;
+      --green: #35ff87;
+      --blue: #37a7ff;
+      --purple: #a855ff;
+      --line: rgba(255, 255, 255, 0.12);
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(255, 47, 95, 0.2), transparent 28%),
+        radial-gradient(circle at 88% 18%, rgba(55, 167, 255, 0.18), transparent 30%),
+        radial-gradient(circle at 50% 88%, rgba(53, 255, 135, 0.13), transparent 34%),
+        linear-gradient(135deg, #03040a 0%, #070915 44%, #05060d 100%);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 85%);
+      z-index: -2;
+    }
+
+    .cursor-glow {
+      position: fixed;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(168, 85, 255, 0.16), transparent 68%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: -1;
+      transition: opacity 0.25s ease;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(5, 6, 13, 0.72);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: var(--green);
+      text-shadow: 0 0 18px rgba(53, 255, 135, 0.65);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      list-style: none;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      padding: 9px 12px;
+      border-radius: 7px;
+      transition: color 0.25s ease, background 0.25s ease, text-shadow 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.07);
+      text-shadow: 0 0 14px rgba(55, 167, 255, 0.75);
+    }
+
+    main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    section {
+      padding: 96px 0;
+      scroll-margin-top: 86px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 48px;
+      padding-top: 120px;
+      padding-bottom: 64px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--green);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--red), var(--green), var(--blue), var(--purple));
+      box-shadow: 0 0 18px rgba(53, 255, 135, 0.75);
+    }
+
+    h1 {
+      font-size: clamp(3rem, 8vw, 6.8rem);
+      line-height: 0.95;
+      letter-spacing: 0;
+      margin-bottom: 22px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, var(--red), var(--green), var(--blue), var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 24px rgba(55, 167, 255, 0.28));
+    }
+
+    .hero p {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin-bottom: 30px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 12px 18px;
+      border-radius: 7px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 800;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.06);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, rgba(255, 47, 95, 0.92), rgba(168, 85, 255, 0.88));
+      box-shadow: 0 0 28px rgba(255, 47, 95, 0.34);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      border-color: rgba(53, 255, 135, 0.7);
+      box-shadow: 0 0 30px rgba(53, 255, 135, 0.22);
+    }
+
+    .orbit {
+      position: relative;
+      min-height: 430px;
+      display: grid;
+      place-items: center;
+    }
+
+    .profile-core {
+      width: min(310px, 78vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(var(--panel-strong), var(--panel-strong)) padding-box,
+        linear-gradient(135deg, var(--red), var(--green), var(--blue), var(--purple)) border-box;
+      border: 2px solid transparent;
+      box-shadow:
+        inset 0 0 42px rgba(255, 255, 255, 0.05),
+        0 0 70px rgba(168, 85, 255, 0.28);
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .initials {
+      font-size: clamp(4rem, 12vw, 7.5rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--green), var(--blue), var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .ring {
+      position: absolute;
+      width: 380px;
+      max-width: 92vw;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      animation: spin 18s linear infinite;
+    }
+
+    .ring::before,
+    .ring::after {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      box-shadow: 0 0 22px currentColor;
+    }
+
+    .ring::before {
+      top: 36px;
+      left: 62px;
+      background: var(--red);
+      color: var(--red);
+    }
+
+    .ring::after {
+      right: 28px;
+      bottom: 92px;
+      background: var(--green);
+      color: var(--green);
+    }
+
+    .section-title {
+      margin-bottom: 28px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.05;
+    }
+
+    .section-title p {
+      max-width: 420px;
+      color: var(--muted);
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+    }
+
+    .about-card {
+      padding: 28px;
+    }
+
+    .about-card p {
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .stats {
+      display: grid;
+      gap: 16px;
+    }
+
+    .stat {
+      padding: 22px;
+      border-left: 3px solid var(--blue);
+    }
+
+    .stat:nth-child(2) {
+      border-left-color: var(--green);
+    }
+
+    .stat:nth-child(3) {
+      border-left-color: var(--purple);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.6rem;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat span {
+      color: var(--muted);
+    }
+
+    .skills-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .skill {
+      position: relative;
+      overflow: hidden;
+      padding: 13px 16px;
+      border-radius: 7px;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-weight: 700;
+    }
+
+    .skill::before {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--red), var(--green), var(--blue), var(--purple));
+    }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
+      padding: 30px;
+      align-items: center;
+    }
+
+    .project-visual {
+      min-height: 260px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background:
+        linear-gradient(135deg, rgba(255, 47, 95, 0.28), transparent 32%),
+        linear-gradient(315deg, rgba(53, 255, 135, 0.24), transparent 36%),
+        rgba(255, 255, 255, 0.05);
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .terminal {
+      width: min(310px, 88%);
+      background: rgba(3, 4, 10, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: 0 0 34px rgba(55, 167, 255, 0.16);
+    }
+
+    .dots {
+      display: flex;
+      gap: 7px;
+      margin-bottom: 16px;
+    }
+
+    .dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+
+    .dots span:nth-child(2) {
+      background: var(--green);
+    }
+
+    .dots span:nth-child(3) {
+      background: var(--blue);
+    }
+
+    .terminal code {
+      display: block;
+      color: var(--green);
+      font-family: Consolas, monospace;
+      font-size: 0.92rem;
+      white-space: normal;
+    }
+
+    .project-card h3 {
+      font-size: clamp(1.55rem, 4vw, 2.4rem);
+      margin-bottom: 14px;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .tag {
+      color: var(--green);
+      background: rgba(53, 255, 135, 0.08);
+      border: 1px solid rgba(53, 255, 135, 0.2);
+      border-radius: 7px;
+      padding: 7px 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 155px 1fr;
+      gap: 22px;
+      padding: 22px;
+      position: relative;
+    }
+
+    .timeline-item .year {
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .timeline-item h3 {
+      margin-bottom: 6px;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .contact-link {
+      min-height: 124px;
+      padding: 20px;
+      color: var(--text);
+      text-decoration: none;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .contact-link span {
+      color: var(--muted);
+      display: block;
+      margin-top: 8px;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-link:hover {
+      transform: translateY(-5px);
+      border-color: rgba(168, 85, 255, 0.72);
+      box-shadow: 0 0 34px rgba(168, 85, 255, 0.18);
+    }
+
+    footer {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 34px 0 44px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(72px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-18px);
+      }
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .hero,
+      .about-grid,
+      .project-card,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 160px;
+        gap: 20px;
+      }
+
+      .orbit {
+        min-height: 340px;
+      }
+
+      .section-title {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      main,
+      .nav,
+      footer {
+        width: min(100% - 22px, 1120px);
+      }
+
+      section {
+        padding: 72px 0;
+      }
+
+      .nav-links a {
+        padding: 8px 9px;
+        font-size: 0.86rem;
+      }
+
+      .hero {
+        padding-top: 178px;
+      }
+
+      .about-card,
+      .project-card,
+      .timeline-item,
+      .contact-link {
+        padding: 18px;
+      }
+
+      .project-visual {
+        min-height: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#home">Portfolio<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Project</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="reveal">
+        <h1>Pranjal <span class="gradient-text">Singh</span></h1>
+        <p>
+          B.Tech Computer Science Engineering student focused on software development,
+          web technologies, and building practical applications that solve real problems.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">View Project</a>
+          <a class="btn" href="https://github.com/ash-pikachu/Portfolio" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </div>
+
+      <div class="orbit reveal" aria-label="Pranjal Singh visual identity">
+        <div class="ring"></div>
+        <div class="profile-core">
+          <span class="initials">PS</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-title reveal">
+        <h2>About Me</h2>
+        <p>Curious, practical, and ready to grow through real internship work.</p>
+      </div>
+      <div class="about-grid">
+        <article class="panel about-card reveal">
+          <p>
+            I am Pranjal Singh, a B.Tech Computer Science Engineering student at ABES
+            Engineering College with a strong interest in software development and web
+            technologies. I have hands-on experience in Python, MySQL, HTML, CSS,
+            JavaScript, and Flask. I enjoy building practical projects and solving
+            real-world problems through code. My goal is to continuously improve my
+            skills, create impactful applications, and grow as a developer.
+          </p>
+        </article>
+        <div class="stats">
+          <div class="panel stat reveal">
+            <strong>9.13</strong>
+            <span>First year SGPA</span>
+          </div>
+          <div class="panel stat reveal">
+            <strong>95.4%</strong>
+            <span>Class 10 score</span>
+          </div>
+          <div class="panel stat reveal">
+            <strong>86.6%</strong>
+            <span>Class 12 score</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-title reveal">
+        <h2>Skills</h2>
+        <p>A balanced mix of programming, frontend basics, databases, and soft skills.</p>
+      </div>
+      <div class="skills-wrap reveal">
+        <span class="skill">Python</span>
+        <span class="skill">HTML</span>
+        <span class="skill">CSS</span>
+        <span class="skill">MySQL</span>
+        <span class="skill">JavaScript</span>
+        <span class="skill">Flask</span>
+        <span class="skill">Communication</span>
+        <span class="skill">Problem Solving</span>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-title reveal">
+        <h2>Featured Project</h2>
+        <p>One strong project presented clearly for internship recruiters.</p>
+      </div>
+      <article class="panel project-card reveal">
+        <div class="project-visual">
+          <div class="terminal">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <code>&gt; Bank Management System</code>
+            <code>&gt; Python backend connected</code>
+            <code>&gt; MySQL records secured</code>
+            <code>&gt; HTML + CSS interface active</code>
+          </div>
+        </div>
+        <div>
+          <h3>Bank Management System</h3>
+          <p>
+            A practical banking application built with Python as the backend, HTML
+            and CSS for the frontend, and MySQL for database management. The system
+            focuses on core banking operations, structured data handling, and a clean
+            user interface.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">MySQL</span>
+          </div>
+          <a class="btn primary" href="https://github.com/ash-pikachu/Bank_management" target="_blank" rel="noreferrer">Open GitHub</a>
+        </div>
+      </article>
+    </section>
+
+    <section id="education">
+      <div class="section-title reveal">
+        <h2>Education</h2>
+        <p>Academic performance and current engineering journey.</p>
+      </div>
+      <div class="timeline">
+        <article class="panel timeline-item reveal">
+          <div class="year">2025 - 2029</div>
+          <div>
+            <h3>B.Tech Computer Science Engineering</h3>
+            <p>ABES Engineering College | First year SGPA: 9.13</p>
+          </div>
+        </article>
+        <article class="panel timeline-item reveal">
+          <div class="year">2024 - 2025</div>
+          <div>
+            <h3>Class 12</h3>
+            <p>C.S.H.P. Public School | 86.6%</p>
+          </div>
+        </article>
+        <article class="panel timeline-item reveal">
+          <div class="year">2022 - 2023</div>
+          <div>
+            <h3>Class 10</h3>
+            <p>C.S.H.P. Public School | 95.4%</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-title reveal">
+        <h2>Contact</h2>
+        <p>Open to internship opportunities, project work, and developer learning spaces.</p>
+      </div>
+      <div class="contact-grid">
+        <a class="panel contact-link reveal" href="mailto:singh.pranjalabc2020@gmail.com">
+          <strong>Email</strong>
+          <span>singh.pranjalabc2020@gmail.com</span>
+        </a>
+        <a class="panel contact-link reveal" href="https://www.linkedin.com/in/pranjal-singh-639006402?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noreferrer">
+          <strong>LinkedIn</strong>
+          <span>Pranjal Singh</span>
+        </a>
+        <a class="panel contact-link reveal" href="https://github.com/ash-pikachu/Portfolio" target="_blank" rel="noreferrer">
+          <strong>GitHub</strong>
+          <span>ash-pikachu/Portfolio</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Designed and built for internship opportunities by Pranjal Singh.</p>
+  </footer>
+
+  <script>
+    const revealElements = document.querySelectorAll(".reveal");
+    const glow = document.querySelector(".cursor-glow");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, {
+      threshold: 0.16
+    });
+
+    revealElements.forEach((element, index) => {
+      element.style.transitionDelay = `${Math.min(index * 55, 260)}ms`;
+      observer.observe(element);
+    });
+
+    window.addEventListener("pointermove", (event) => {
+      glow.style.left = `${event.clientX}px`;
+      glow.style.top = `${event.clientY}px`;
+    });
+  </script>
+</body>
+</html>
