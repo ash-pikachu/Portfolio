@@ -1,0 +1,2 @@
+# This portfolio is a static HTML/CSS/JavaScript site.
+# No Python packages are required for deployment on Render.
