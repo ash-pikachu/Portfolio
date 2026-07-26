@@ -15,11 +15,12 @@
     .panel, .project-card, .edu-card, .contact-card,
     .btn, .terminal, main h1, main h2, main h3, main p,
     main li, main span, main a, .section-title h2, .section-title p {
-      transition: background 0.7s cubic-bezier(0.23, 1, 0.32, 1),
+      transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  background 0.7s cubic-bezier(0.23, 1, 0.32, 1),
                   background-color 0.7s cubic-bezier(0.23, 1, 0.32, 1),
-                  border-color 0.6s ease,
+                  border-color 0.5s ease,
                   color 0.5s ease,
-                  box-shadow 0.7s ease !important;
+                  box-shadow 0.5s ease !important;
     }
 
     /* ── SECTION TITLES ─────────────────────────────────────────────── */
@@ -34,7 +35,7 @@
     /* ── GENERAL PANELS / CARDS ─────────────────────────────────────── */
     body.light-mode .panel,
     body.light-mode .project-card,
-    body.light-mode .edu-card,
+    body.light-mode .edu-item,
     body.light-mode .contact-card {
       background: rgba(255, 255, 255, 0.90) !important;
       border-color: rgba(148, 163, 184, 0.3) !important;
@@ -47,6 +48,81 @@
 
     body.light-mode main p, body.light-mode main li {
       color: #334155 !important;
+    }
+
+    /* ── PROJECT CARD ───────────────────────────────────────────────── */
+    body.light-mode .proj-badge {
+      color: #0b8a42 !important;
+      background: rgba(11, 138, 66, 0.08) !important;
+      border-color: rgba(11, 138, 66, 0.25) !important;
+    }
+    body.light-mode .proj-badge::before {
+      background: #0b8a42 !important;
+      box-shadow: 0 0 6px #0b8a42 !important;
+    }
+    body.light-mode .tag {
+      color: #1c7ed6 !important;
+      background: rgba(28, 126, 214, 0.08) !important;
+      border-color: rgba(28, 126, 214, 0.22) !important;
+    }
+
+    /* ── EDUCATION SECTION ──────────────────────────────────────────── */
+    body.light-mode .edu-item {
+      background: rgba(255, 255, 255, 0.90) !important;
+      border-color: rgba(148, 163, 184, 0.35) !important;
+    }
+    body.light-mode .edu-item.edu-btech {
+      --edu-color: #1c7ed6 !important;
+      --edu-bg: rgba(28, 126, 214, 0.07) !important;
+      --edu-border: rgba(28, 126, 214, 0.2) !important;
+    }
+    body.light-mode .edu-item.edu-12 {
+      --edu-color: #ae3ec9 !important;
+      --edu-bg: rgba(174, 62, 201, 0.07) !important;
+      --edu-border: rgba(174, 62, 201, 0.2) !important;
+    }
+    body.light-mode .edu-item.edu-10 {
+      --edu-color: #0b8a42 !important;
+      --edu-bg: rgba(11, 138, 66, 0.07) !important;
+      --edu-border: rgba(11, 138, 66, 0.2) !important;
+    }
+    body.light-mode .edu-item h3 {
+      color: #0f172a !important;
+    }
+    body.light-mode .edu-item p {
+      color: #475569 !important;
+    }
+    body.light-mode .edu-score {
+      background: rgba(15, 23, 42, 0.06) !important;
+      border-color: rgba(15, 23, 42, 0.12) !important;
+      color: #0f172a !important;
+    }
+
+    /* ── CONTACT SECTION ────────────────────────────────────────────── */
+    body.light-mode .contact-card {
+      background: rgba(255, 255, 255, 0.90) !important;
+      border-color: rgba(148, 163, 184, 0.3) !important;
+    }
+    body.light-mode .contact-card.cc-email {
+      --cc-color: #e03131 !important;
+      --cc-border: rgba(224, 49, 49, 0.25) !important;
+    }
+    body.light-mode .contact-card.cc-li {
+      --cc-color: #1c7ed6 !important;
+      --cc-border: rgba(28, 126, 214, 0.25) !important;
+    }
+    body.light-mode .contact-card.cc-gh {
+      --cc-color: #9c36b5 !important;
+      --cc-border: rgba(156, 54, 181, 0.25) !important;
+    }
+    body.light-mode .contact-card .cc-fill {
+      background: rgba(255, 255, 255, 0.96) !important;
+    }
+    body.light-mode .contact-card .cc-label {
+      color: #1e293b !important;
+    }
+    body.light-mode .contact-card .cc-value {
+      color: #475569 !important;
     }
 
     /* ── ABOUT — TERMINAL (always stays dark — intentional contrast) ── */
@@ -92,7 +168,7 @@
     }
     body.light-mode .stat-orb:hover {
       box-shadow: 0 0 28px var(--orb-glow), 0 18px 50px rgba(15,23,42,0.12) !important;
-      transform: translateX(0) scale(1.03) !important;
+      transform: translateY(-4px) scale(1.02) !important;
     }
 
     /* ── SKILLS — CATEGORY CARDS ────────────────────────────────────── */
@@ -144,6 +220,12 @@
     body.light-mode .terminal {
       background: #0f172a !important;
       color: #38bdf8 !important;
+    }
+
+    /* ── CUSTOM CURSOR ──────────────────────────────────────────────── */
+    body.light-mode .cursor-dot {
+      background-color: #ff3b30 !important;
+      box-shadow: 0 0 10px rgba(255, 59, 48, 0.85) !important;
     }
 
     /* Navbar is intentionally NOT listed here — it stays dark */

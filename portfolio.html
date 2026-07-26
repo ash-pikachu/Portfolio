@@ -407,7 +407,9 @@
       font-weight: 800;
       border: 1px solid rgba(255, 255, 255, 0.15);
       background: rgba(255, 255, 255, 0.06);
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  box-shadow 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  border-color 0.4s ease;
     }
 
     .btn.primary {
@@ -416,7 +418,7 @@
     }
 
     .btn:hover {
-      transform: translateY(-3px);
+      transform: translateY(-4px);
       border-color: rgba(53, 255, 135, 0.7);
       box-shadow: 0 0 30px rgba(53, 255, 135, 0.22);
     }
@@ -591,7 +593,9 @@
       cursor: default;
       opacity: 0;
       transform: translateX(35px) scale(0.92);
-      transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s;
+      transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.7s cubic-bezier(0.22,1,0.36,1),
+                  box-shadow 0.45s cubic-bezier(0.25,0.46,0.45,0.94);
     }
     .stat-orb.orb-visible {
       opacity: 1;
@@ -599,7 +603,7 @@
     }
     .stat-orb:hover {
       box-shadow: 0 0 40px var(--orb-glow), 0 18px 50px rgba(0,0,0,0.55);
-      transform: translateX(0) scale(1.03);
+      transform: translateX(0) scale(1.04);
     }
 
     /* Rotating ring */
@@ -724,19 +728,20 @@
       cursor: default;
       will-change: transform;
 
-      /* 3-D entrance — hidden by default */
+      /* Entrance & hover transitions */
       opacity: 0;
-      transform: perspective(900px) rotateX(22deg) translateY(55px) scale(0.96);
+      transform: translateY(55px) scale(0.96);
       transition:
-        opacity   0.75s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-        box-shadow 0.35s ease,
-        border-color 0.35s ease;
+        opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        border-color 0.4s ease,
+        background 0.4s ease;
     }
 
     .skill-category.skill-visible {
       opacity: 1;
-      transform: perspective(900px) rotateX(0deg) translateY(0) scale(1);
+      transform: translateY(0) scale(1);
     }
 
     /* Rotating neon border glow */
@@ -754,7 +759,7 @@
       animation: borderSpin var(--spin-speed, 4s) linear infinite;
       z-index: 0;
       opacity: 0.6;
-      transition: opacity 0.35s;
+      transition: opacity 0.4s ease;
     }
 
     .skill-category:hover::before { opacity: 1; }
@@ -778,7 +783,8 @@
       background: var(--cat-glow);
       filter: blur(52px);
       pointer-events: none;
-      transition: transform 0.6s ease, opacity 0.4s ease;
+      transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94),
+                  opacity 0.45s ease;
       opacity: 0.55;
       z-index: 0;
     }
@@ -809,14 +815,13 @@
       100% { top: 100%; opacity: 0; }
     }
 
-    /* Hover lift */
+    /* Smooth Hover Lift + Glow (transform handled by JS tilt) */
     .skill-category:hover {
-      border-color: rgba(255,255,255,0.09);
+      border-color: rgba(255,255,255,0.12);
       box-shadow:
         0 0 0 1px var(--cat-border),
-        0 24px 64px rgba(0,0,0,0.65),
-        0 0 50px var(--cat-glow-outer);
-      transform: perspective(900px) rotateX(0deg) translateY(-8px) scale(1.01);
+        0 20px 50px rgba(0,0,0,0.55),
+        0 0 40px var(--cat-glow-outer);
     }
 
     /* ── Category header ────────────────────────────────────────────────────── */
@@ -898,9 +903,9 @@
       transform: translateX(-14px);
       transition:
         opacity   0.4s ease,
-        transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-        background 0.25s, border-color 0.25s, color 0.25s,
-        box-shadow 0.25s;
+        transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        background 0.35s, border-color 0.35s, color 0.35s,
+        box-shadow 0.35s;
     }
 
     .skill.pill-visible {
@@ -913,7 +918,7 @@
       border-color: var(--cat-border);
       color: #fff;
       box-shadow: 0 0 14px var(--cat-glow-outer);
-      transform: translateX(4px);
+      transform: translateX(4px) translateY(-2px);
     }
 
     .skill-dot {
@@ -978,7 +983,7 @@
       transform: translateY(50px) scale(0.97);
       transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1),
                   transform 0.8s cubic-bezier(0.22,1,0.36,1),
-                  box-shadow 0.4s ease;
+                  box-shadow 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
     .project-card.proj-visible {
       opacity: 1;
@@ -988,6 +993,7 @@
       box-shadow: 0 0 0 1px rgba(53,255,135,0.2),
                   0 30px 80px rgba(0,0,0,0.7),
                   0 0 60px rgba(53,255,135,0.08);
+      transform: translateY(-6px) scale(1);
     }
 
     /* Code-window left panel */
@@ -1145,8 +1151,8 @@
       transform: translateX(30px);
       transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1),
                   transform 0.65s cubic-bezier(0.22,1,0.36,1),
-                  box-shadow 0.3s ease,
-                  border-color 0.3s ease;
+                  box-shadow 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  border-color 0.4s ease;
     }
     .edu-item.edu-visible {
       opacity: 1;
@@ -1156,6 +1162,7 @@
       border-color: var(--edu-color, rgba(116,192,252,0.3));
       box-shadow: 0 0 30px var(--edu-glow, rgba(116,192,252,0.1)),
                   0 16px 48px rgba(0,0,0,0.5);
+      transform: translateX(6px) translateY(-4px);
     }
     /* Glowing node on the spine */
     .edu-node {
@@ -1236,8 +1243,8 @@
       transform: translateY(35px) scale(0.95);
       transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1),
                   transform 0.65s cubic-bezier(0.22,1,0.36,1),
-                  box-shadow 0.35s ease,
-                  border-color 0.35s ease;
+                  box-shadow 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  border-color 0.4s ease;
     }
     .contact-card.card-visible {
       opacity: 1;
@@ -1248,7 +1255,7 @@
       box-shadow: 0 0 0 1px var(--cc-border),
                   0 20px 56px rgba(0,0,0,0.6),
                   0 0 40px var(--cc-glow);
-      transform: translateY(-6px) scale(1.01);
+      transform: translateY(-7px) scale(1.02);
     }
     /* Rotating border arc */
     .contact-card::before {
@@ -1340,10 +1347,6 @@
     .contact-card.cc-email  { --cc-color:#ff8787; --cc-glow:rgba(255,135,135,0.35); --cc-border:rgba(255,135,135,0.3); --cc-speed:4s; }
     .contact-card.cc-li     { --cc-color:#74c0fc; --cc-glow:rgba(116,192,252,0.35); --cc-border:rgba(116,192,252,0.3); --cc-speed:5s; }
     .contact-card.cc-gh     { --cc-color:#da77f2; --cc-glow:rgba(218,119,242,0.35); --cc-border:rgba(218,119,242,0.3); --cc-speed:4.5s; }
-      transform: translateY(-5px);
-      border-color: rgba(168, 85, 255, 0.72);
-      box-shadow: 0 0 34px rgba(168, 85, 255, 0.18);
-    }
 
     footer {
       width: min(1120px, calc(100% - 32px));
@@ -1666,6 +1669,8 @@
     .loader-equalizer {
       position: absolute;
       bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
       align-items: flex-end;
       gap: 5px;
@@ -1683,6 +1688,15 @@
       will-change: transform;
       animation: bounceBar 1s ease-in-out infinite alternate;
       box-shadow: 0 0 8px #00f3ff;
+    }
+
+    @keyframes bounceBar {
+      0% {
+        transform: scaleY(0.18);
+      }
+      100% {
+        transform: scaleY(1);
+      }
     }
 
     .loader-equalizer span:nth-child(1) { animation-duration: 0.8s; animation-delay: 0.0s; }
@@ -2006,8 +2020,8 @@
       top: 50%;
       transform: translateY(-50%);
       opacity: 0;
-      color: rgba(0, 255, 150, 0.9);
-      text-shadow: 0 0 5px rgba(0, 255, 100, 0.6);
+      color: rgba(251, 191, 36, 0.9);
+      text-shadow: 0 0 5px rgba(245, 158, 11, 0.6);
     }
 
     .status-indicator {
@@ -2036,10 +2050,10 @@
       opacity: 0;
       background: radial-gradient(
         circle,
-        rgba(0, 255, 150, 0.8) 0%,
-        rgba(0, 200, 80, 0.4) 100%
+        rgba(245, 158, 11, 0.8) 0%,
+        rgba(217, 119, 6, 0.4) 100%
       );
-      box-shadow: 0 0 10px rgba(0, 255, 150, 0.5);
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
     }
 
     @keyframes blink {
@@ -2195,35 +2209,35 @@
     }
 
     .toggle-input:checked + .toggle-track {
-      background: rgba(0, 60, 30, 0.4);
-      border-color: rgba(0, 255, 150, 0.3);
+      background: rgba(80, 50, 0, 0.35);
+      border-color: rgba(245, 158, 11, 0.4);
       box-shadow:
-        0 0 15px rgba(0, 255, 150, 0.2),
-        inset 0 0 10px rgba(0, 0, 0, 0.8);
+        0 0 18px rgba(245, 158, 11, 0.25),
+        inset 0 0 12px rgba(0, 0, 0, 0.8);
     }
 
     .toggle-input:checked + .toggle-track::before {
       background: radial-gradient(
           ellipse at center,
-          rgba(0, 255, 150, 0.1) 0%,
+          rgba(245, 158, 11, 0.15) 0%,
           rgba(0, 0, 0, 0) 70%
         ),
-        linear-gradient(90deg, rgba(0, 120, 60, 0.1) 0%, rgba(0, 60, 30, 0.2) 100%);
+        linear-gradient(90deg, rgba(120, 70, 0, 0.1) 0%, rgba(60, 30, 0, 0.2) 100%);
     }
 
     .toggle-input:checked + .toggle-track::after {
       background: linear-gradient(
         90deg,
-        rgba(0, 255, 150, 0.3) 0%,
-        rgba(0, 160, 80, 0.1) 100%
+        rgba(245, 158, 11, 0.4) 0%,
+        rgba(217, 119, 6, 0.15) 100%
       );
     }
 
     .toggle-input:checked + .toggle-track .track-line {
       background: repeating-linear-gradient(
         90deg,
-        rgba(0, 255, 150, 0.3) 0px,
-        rgba(0, 255, 150, 0.3) 5px,
+        rgba(245, 158, 11, 0.3) 0px,
+        rgba(245, 158, 11, 0.3) 5px,
         transparent 5px,
         transparent 15px
       );
@@ -2234,47 +2248,47 @@
       left: calc(100% - 49px);
       background: radial-gradient(
         circle,
-        rgba(10, 90, 40, 0.9) 0%,
-        rgba(0, 50, 20, 0.8) 100%
+        rgba(90, 50, 10, 0.9) 0%,
+        rgba(50, 20, 0, 0.8) 100%
       );
-      border-color: rgba(0, 255, 150, 0.6);
+      border-color: rgba(245, 158, 11, 0.7);
       box-shadow:
         0 2px 15px rgba(0, 0, 0, 0.5),
-        inset 0 0 15px rgba(0, 255, 150, 0.5);
+        inset 0 0 15px rgba(245, 158, 11, 0.6);
     }
 
     .toggle-input:checked + .toggle-track .thumb-core {
       background: radial-gradient(
         circle,
-        rgba(0, 255, 150, 0.6) 0%,
-        rgba(0, 120, 50, 0.2) 100%
+        rgba(251, 191, 36, 0.75) 0%,
+        rgba(180, 83, 9, 0.25) 100%
       );
-      box-shadow: 0 0 20px rgba(0, 255, 150, 0.5);
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.7);
     }
 
     .toggle-input:checked + .toggle-track .thumb-inner {
       background: radial-gradient(
         circle,
-        rgba(255, 255, 255, 0.8) 0%,
-        rgba(100, 255, 200, 0.5) 100%
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(251, 191, 36, 0.65) 100%
       );
-      box-shadow: 0 0 10px rgba(100, 255, 200, 0.7);
+      box-shadow: 0 0 15px rgba(251, 191, 36, 0.85);
     }
 
     .toggle-input:checked + .toggle-track .thumb-scan {
       background: linear-gradient(
         90deg,
         rgba(0, 0, 0, 0) 0%,
-        rgba(0, 255, 150, 0.5) 20%,
+        rgba(245, 158, 11, 0.5) 20%,
         rgba(255, 255, 255, 0.8) 50%,
-        rgba(0, 255, 150, 0.5) 80%,
+        rgba(245, 158, 11, 0.5) 80%,
         rgba(0, 0, 0, 0) 100%
       );
     }
 
     .toggle-input:checked + .toggle-track .thumb-particle {
-      background: rgba(100, 255, 200, 0.8);
-      box-shadow: 0 0 5px rgba(100, 255, 200, 0.8);
+      background: rgba(251, 191, 36, 0.85);
+      box-shadow: 0 0 6px rgba(251, 191, 36, 0.85);
     }
 
     .toggle-input:checked + .toggle-track .data-text.off {
@@ -2302,28 +2316,28 @@
     }
 
     .toggle-input:checked + .toggle-track .energy-ring:nth-child(1) {
-      border-top-color: rgba(0, 255, 150, 0.5);
-      border-right-color: rgba(0, 255, 150, 0.3);
+      border-top-color: rgba(245, 158, 11, 0.6);
+      border-right-color: rgba(245, 158, 11, 0.3);
     }
 
     .toggle-input:checked + .toggle-track .energy-ring:nth-child(2) {
-      border-bottom-color: rgba(0, 255, 150, 0.5);
-      border-left-color: rgba(0, 255, 150, 0.3);
+      border-bottom-color: rgba(245, 158, 11, 0.6);
+      border-left-color: rgba(245, 158, 11, 0.3);
     }
 
     .toggle-input:checked + .toggle-track .energy-ring:nth-child(3) {
-      border-left-color: rgba(0, 255, 150, 0.5);
-      border-top-color: rgba(0, 255, 150, 0.3);
+      border-left-color: rgba(245, 158, 11, 0.6);
+      border-top-color: rgba(245, 158, 11, 0.3);
     }
 
     .toggle-input:checked + .toggle-track .interface-line {
-      background: rgba(0, 255, 150, 0.3);
+      background: rgba(245, 158, 11, 0.35);
     }
 
     .toggle-input:checked + .toggle-track .holo-glow {
       background: radial-gradient(
         ellipse at center,
-        rgba(0, 255, 150, 0.2) 0%,
+        rgba(245, 158, 11, 0.25) 0%,
         rgba(0, 0, 0, 0) 70%
       );
     }
@@ -2336,7 +2350,7 @@
 
     .toggle-input:checked:hover + .toggle-track {
       box-shadow:
-        0 0 20px rgba(0, 255, 150, 0.3),
+        0 0 20px rgba(245, 158, 11, 0.35),
         inset 0 0 10px rgba(0, 0, 0, 0.8);
     }
 
@@ -2437,8 +2451,8 @@
             </div>
 
             <div class="toggle-data">
-              <div class="data-text off">OFF</div>
-              <div class="data-text on">ON</div>
+              <div class="data-text off">DARK</div>
+              <div class="data-text on">LIGHT</div>
               <div class="status-indicator off"></div>
               <div class="status-indicator on"></div>
             </div>
@@ -2985,22 +2999,71 @@
 
       cards.forEach(card => skillObserver.observe(card));
 
-      // 3. Subtle 3-D tilt on mouse-move per card
+    })();
+
+    /* ── Skill Cards: Smooth 3D Tilt via rAF Lerp ────────────────────────────── */
+    (function initSkillTilt() {
+      const cards = document.querySelectorAll('.skill-category');
+      const LERP_SPEED = 0.08;  // lower = smoother/slower
+      const MAX_TILT = 6;       // max degrees
+
       cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-          const rect   = card.getBoundingClientRect();
-          const cx     = rect.left + rect.width  / 2;
-          const cy     = rect.top  + rect.height / 2;
-          const dx     = (e.clientX - cx) / (rect.width  / 2); // -1..1
-          const dy     = (e.clientY - cy) / (rect.height / 2);
-          const tiltX  = dy * -7;   // degrees
-          const tiltY  = dx *  7;
+        let targetX = 0, targetY = 0;
+        let currentX = 0, currentY = 0;
+        let isHovered = false;
+        let rafId = null;
+
+        function animate() {
+          // Lerp toward target
+          currentX += (targetX - currentX) * LERP_SPEED;
+          currentY += (targetY - currentY) * LERP_SPEED;
+
+          // Snap to 0 when close enough (avoids infinite loop)
+          if (Math.abs(currentX - targetX) < 0.01) currentX = targetX;
+          if (Math.abs(currentY - targetY) < 0.01) currentY = targetY;
+
+          const liftY = isHovered ? -6 : 0;
+          const sc    = isHovered ? 1.02 : 1;
+
           card.style.transform =
-            `perspective(900px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-8px) scale(1.01)`;
+            `perspective(800px) rotateX(${currentX}deg) rotateY(${currentY}deg) translateY(${liftY}px) scale(${sc})`;
+
+          // Keep animating if not settled
+          if (currentX !== targetX || currentY !== targetY || (isHovered && liftY !== 0)) {
+            rafId = requestAnimationFrame(animate);
+          } else if (!isHovered) {
+            // Fully settled at rest — clear inline transform so CSS takes over
+            card.style.transform = '';
+            rafId = null;
+          } else {
+            rafId = requestAnimationFrame(animate);
+          }
+        }
+
+        function startLoop() {
+          if (!rafId) rafId = requestAnimationFrame(animate);
+        }
+
+        card.addEventListener('mouseenter', () => {
+          isHovered = true;
+          startLoop();
         });
+
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const dx = (e.clientX - cx) / (rect.width / 2);   // -1 to 1
+          const dy = (e.clientY - cy) / (rect.height / 2);
+          targetX = -dy * MAX_TILT;  // tilt around X axis
+          targetY =  dx * MAX_TILT;  // tilt around Y axis
+        });
+
         card.addEventListener('mouseleave', () => {
-          card.style.transform =
-            'perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)';
+          isHovered = false;
+          targetX = 0;
+          targetY = 0;
+          startLoop();
         });
       });
     })();
