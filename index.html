@@ -985,6 +985,9 @@
                   transform 0.8s cubic-bezier(0.22,1,0.36,1),
                   box-shadow 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
+    .project-card + .project-card {
+      margin-top: 28px;
+    }
     .project-card.proj-visible {
       opacity: 1;
       transform: translateY(0) scale(1);
@@ -994,6 +997,40 @@
                   0 30px 80px rgba(0,0,0,0.7),
                   0 0 60px rgba(53,255,135,0.08);
       transform: translateY(-6px) scale(1);
+    }
+    /* Prashiksha card — purple/violet accent */
+    #proj-card-1 .proj-code-panel::before {
+      background:
+        linear-gradient(135deg, rgba(180,100,255,0.1) 0%, transparent 55%),
+        linear-gradient(315deg, rgba(100,130,255,0.08) 0%, transparent 55%);
+    }
+    #proj-card-1 .proj-code-panel {
+      background: #08071a;
+    }
+    #proj-card-1::after {
+      background: linear-gradient(90deg, transparent, #b464ff 30%, #6480ff 70%, transparent);
+    }
+    #proj-card-1:hover {
+      box-shadow: 0 0 0 1px rgba(180,100,255,0.22),
+                  0 30px 80px rgba(0,0,0,0.7),
+                  0 0 60px rgba(180,100,255,0.09);
+    }
+    /* ECHO card — amber/orange accent */
+    #proj-card-2 .proj-code-panel::before {
+      background:
+        linear-gradient(135deg, rgba(255,170,50,0.1) 0%, transparent 55%),
+        linear-gradient(315deg, rgba(255,100,80,0.07) 0%, transparent 55%);
+    }
+    #proj-card-2 .proj-code-panel {
+      background: #190e07;
+    }
+    #proj-card-2::after {
+      background: linear-gradient(90deg, transparent, #ffaa32 30%, #ff6450 70%, transparent);
+    }
+    #proj-card-2:hover {
+      box-shadow: 0 0 0 1px rgba(255,170,50,0.22),
+                  0 30px 80px rgba(0,0,0,0.7),
+                  0 0 60px rgba(255,170,50,0.09);
     }
 
     /* Code-window left panel */
@@ -1089,6 +1126,15 @@
       box-shadow: 0 0 6px #35ff87;
       animation: dotBlink 1.8s ease-in-out infinite;
     }
+    .proj-badge--ongoing {
+      color: #ffbd2e;
+      background: rgba(255,189,46,0.08);
+      border-color: rgba(255,189,46,0.25);
+    }
+    .proj-badge--ongoing::before {
+      background: #ffbd2e;
+      box-shadow: 0 0 6px #ffbd2e;
+    }
     .proj-info h3 {
       font-size: clamp(1.4rem, 3.5vw, 2rem);
       margin-bottom: 14px;
@@ -1120,6 +1166,132 @@
       height: 2px;
       background: linear-gradient(90deg, transparent, #35ff87 30%, #37a7ff 70%, transparent);
       opacity: 0.5;
+    }
+
+    /* ══ MINI PROJECT CARDS GRID ═══════════════════════════════════════════ */
+    .mini-projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 28px;
+    }
+    .mini-project-card {
+      position: relative;
+      border-radius: 18px;
+      padding: 28px 26px 24px;
+      background: linear-gradient(145deg, rgba(7,9,22,0.97), rgba(11,15,36,0.95));
+      border: 1px solid rgba(255,255,255,0.06);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(36px) scale(0.97);
+      transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.75s cubic-bezier(0.22,1,0.36,1),
+                  box-shadow 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .mini-project-card.proj-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .mini-project-card:hover {
+      box-shadow: 0 0 0 1px rgba(55,167,255,0.22),
+                  0 24px 60px rgba(0,0,0,0.65),
+                  0 0 48px rgba(55,167,255,0.07);
+      transform: translateY(-5px) scale(1);
+    }
+    .mini-project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(55,167,255,0.06) 0%, transparent 55%),
+        linear-gradient(315deg, rgba(53,255,135,0.04) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .mini-project-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #37a7ff 30%, #35ff87 70%, transparent);
+      opacity: 0.45;
+    }
+    .mini-proj-icon {
+      width: 40px; height: 40px;
+      border-radius: 11px;
+      background: rgba(55,167,255,0.1);
+      border: 1px solid rgba(55,167,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      flex-shrink: 0;
+    }
+    .mini-proj-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #37a7ff;
+      background: rgba(55,167,255,0.08);
+      border: 1px solid rgba(55,167,255,0.2);
+      border-radius: 100px;
+      padding: 4px 11px;
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+    .mini-project-card h4 {
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    .mini-project-card p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.65;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+    .mini-proj-bullets {
+      list-style: none;
+      padding: 0; margin: 0 0 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .mini-proj-bullets li {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.55;
+      padding-left: 14px;
+      position: relative;
+    }
+    .mini-proj-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #37a7ff;
+      font-size: 0.78rem;
+    }
+    .mini-proj-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    @media (max-width: 760px) {
+      .mini-projects-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* ══ EDUCATION — NEON TIMELINE ═════════════════════════════════════════ */
@@ -2660,8 +2832,8 @@
 
     <section id="projects">
       <div class="section-title reveal">
-        <h2>Featured Project</h2>
-        <p>One strong project built for real-world use.</p>
+        <h2>Projects</h2>
+        <p>Real-world applications built with purpose and precision.</p>
       </div>
 
       <article class="project-card" id="proj-card">
@@ -2703,7 +2875,86 @@
           <a class="btn primary" href="https://github.com/ash-pikachu/Bank_management" target="_blank" rel="noreferrer">View on GitHub &nbsp;&rarr;</a>
         </div>
       </article>
+
+      <!-- Prashiksha Project Card -->
+      <article class="project-card" id="proj-card-1">
+        <!-- Left: Code window -->
+        <div class="proj-code-panel">
+          <div class="proj-title-bar">
+            <span class="proj-dot r"></span>
+            <span class="proj-dot y"></span>
+            <span class="proj-dot g"></span>
+            <span class="proj-filename">prashiksha.py</span>
+          </div>
+          <div class="proj-code-body">
+            <div class="code-line"><span class="ln">1</span><span class="cm"># Prashiksha — AI Learning Platform</span></div>
+            <div class="code-line"><span class="ln">2</span></div>
+            <div class="code-line"><span class="ln">3</span><span class="kw">import</span><span class="op"> </span><span class="nm">google.generativeai</span><span class="op"> </span><span class="kw">as</span><span class="op"> </span><span class="nm">genai</span></div>
+            <div class="code-line"><span class="ln">4</span></div>
+            <div class="code-line hl"><span class="ln">5</span><span class="kw">def</span><span class="op"> </span><span class="fn">generate_lesson</span><span class="op">(</span><span class="nm">topic, level</span><span class="op">):</span></div>
+            <div class="code-line hl"><span class="ln">6</span><span class="op">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="nm">model</span><span class="op"> = </span><span class="fn">genai.GenerativeModel</span><span class="op">(</span></div>
+            <div class="code-line hl"><span class="ln">7</span><span class="op">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="str">"gemini-pro"</span></div>
+            <div class="code-line hl"><span class="ln">8</span><span class="op">&nbsp;&nbsp;&nbsp;&nbsp;)</span></div>
+            <div class="code-line"><span class="ln">9</span><span class="op">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="nm">prompt</span><span class="op"> = </span><span class="str">f"Teach {topic} at {level}"</span></div>
+            <div class="code-line"><span class="ln">10</span><span class="op">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="nm">res</span><span class="op"> = </span><span class="nm">model</span><span class="op">.</span><span class="fn">generate_content</span><span class="op">(</span><span class="nm">prompt</span><span class="op">)</span></div>
+            <div class="code-line"><span class="ln">11</span><span class="op">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kw">return</span><span class="op"> </span><span class="nm">res</span><span class="op">.</span><span class="nm">text</span></div>
+          </div>
+        </div>
+
+        <!-- Right: Info -->
+        <div class="proj-info">
+          <span class="proj-badge proj-badge--ongoing">Ongoing</span>
+          <h3>Prashiksha</h3>
+          <p>A personalized AI-powered learning platform that dynamically adapts instructional content and study assistance to each student's unique learning needs and pace, powered by the Google Gemini API.</p>
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">Gemini API</span>
+            <span class="tag">Web Technologies</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ECHO Project Card -->
+      <article class="project-card" id="proj-card-2">
+        <!-- Left: Code window -->
+        <div class="proj-code-panel">
+          <div class="proj-title-bar">
+            <span class="proj-dot r"></span>
+            <span class="proj-dot y"></span>
+            <span class="proj-dot g"></span>
+            <span class="proj-filename">echo.py</span>
+          </div>
+          <div class="proj-code-body">
+            <div class="code-line"><span class="ln">1</span><span class="cm"># ECHO — AI Desktop Assistant</span></div>
+            <div class="code-line"><span class="ln">2</span></div>
+            <div class="code-line"><span class="ln">3</span><span class="kw">import</span><span class="op"> </span><span class="nm">ollama</span><span class="op">, </span><span class="nm">subprocess</span></div>
+            <div class="code-line"><span class="ln">4</span></div>
+            <div class="code-line hl"><span class="ln">5</span><span class="kw">def</span><span class="op"> </span><span class="fn">handle_command</span><span class="op">(</span><span class="nm">user_input</span><span class="op">):</span></div>
+            <div class="code-line hl"><span class="ln">6</span><span class="op">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="nm">res</span><span class="op"> = </span><span class="nm">ollama</span><span class="op">.</span><span class="fn">chat</span><span class="op">(</span></div>
+            <div class="code-line hl"><span class="ln">7</span><span class="op">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="nm">model</span><span class="op">=</span><span class="str">"qwen3"</span><span class="op">,</span></div>
+            <div class="code-line hl"><span class="ln">8</span><span class="op">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="nm">messages</span><span class="op">=[{</span><span class="str">"role"</span><span class="op">: </span><span class="str">"user"</span><span class="op">,</span></div>
+            <div class="code-line hl"><span class="ln">9</span><span class="op">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="str">"content"</span><span class="op">: </span><span class="nm">user_input</span><span class="op">}]</span></div>
+            <div class="code-line"><span class="ln">10</span><span class="op">&nbsp;&nbsp;&nbsp;&nbsp;)</span></div>
+            <div class="code-line"><span class="ln">11</span><span class="op">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="nm">cmd</span><span class="op"> = </span><span class="nm">res</span><span class="op">[</span><span class="str">"message"</span><span class="op">][</span><span class="str">"content"</span><span class="op">]</span></div>
+            <div class="code-line"><span class="ln">12</span><span class="op">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="nm">subprocess</span><span class="op">.</span><span class="fn">run</span><span class="op">(</span><span class="nm">cmd</span><span class="op">, </span><span class="nm">shell</span><span class="op">=</span><span class="kw">True</span><span class="op">)</span></div>
+          </div>
+        </div>
+
+        <!-- Right: Info -->
+        <div class="proj-info">
+          <span class="proj-badge proj-badge--ongoing">Ongoing</span>
+          <h3>ECHO</h3>
+          <p>An AI-powered desktop assistant that understands natural-language commands and assists with everyday computer tasks — built around a locally running Qwen3 LLM via Ollama, with full Windows automation support.</p>
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">Qwen3</span>
+            <span class="tag">Ollama</span>
+            <span class="tag">Windows Automation</span>
+          </div>
+        </div>
+      </article>
     </section>
+
 
     <section id="education">
       <div class="section-title reveal">
@@ -2826,18 +3077,19 @@
     /* ── About Section — Terminal + Orb Animations ──────────────────────────── */
     /* ── Projects Code-Window Animation ──────────────────────────────────── */
     (function initProject() {
-      const card = document.getElementById('proj-card');
-      if (!card) return;
-      const lines = card.querySelectorAll('.code-line');
-      const obs = new IntersectionObserver(entries => {
-        if (!entries[0].isIntersecting) return;
-        card.classList.add('proj-visible');
-        lines.forEach((ln, i) => {
-          setTimeout(() => ln.classList.add('line-in'), 300 + i * 80);
-        });
-        obs.disconnect();
-      }, { threshold: 0.2 });
-      obs.observe(card);
+      const cards = ['proj-card', 'proj-card-1', 'proj-card-2'].map(id => document.getElementById(id)).filter(Boolean);
+      cards.forEach(card => {
+        const lines = card.querySelectorAll('.code-line');
+        const obs = new IntersectionObserver(entries => {
+          if (!entries[0].isIntersecting) return;
+          card.classList.add('proj-visible');
+          lines.forEach((ln, i) => {
+            setTimeout(() => ln.classList.add('line-in'), 300 + i * 80);
+          });
+          obs.disconnect();
+        }, { threshold: 0.2 });
+        obs.observe(card);
+      });
     })();
 
     /* ── Education Timeline Animation ────────────────────────────────────── */

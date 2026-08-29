@@ -228,6 +228,7 @@
       box-shadow: 0 0 10px rgba(255, 59, 48, 0.85) !important;
     }
 
+
     /* Navbar is intentionally NOT listed here — it stays dark */
 
 
